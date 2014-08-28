@@ -1,0 +1,34 @@
+{
+  "name": "react-defer",
+  "version": "0.0.0",
+  "description": "React Mixin to safely defer methods across a components lifecycle.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://git@github.com:elierotenberg/react-defer.git"
+  },
+  "keywords": [
+    "React",
+    "defer",
+    "async"
+  ],
+  "author": "Elie Rotenberg <elie@rotenberg.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elierotenberg/react-defer/issues"
+  },
+  "homepage": "https://github.com/elierotenberg/react-defer",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "raf": "^2.0.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-react": "^0.9.0",
+    "react": "^0.11.1"
+  }
+}
