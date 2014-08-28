@@ -27,6 +27,7 @@ React.createClass({
 	},
 }
 });
+```
 
 
 ### API
