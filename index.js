@@ -1,7 +1,7 @@
 var _ = require("lodash");
 var raf = require("raf");
 
-var DeferMixin = {
+var Mixin = {
 	_deferMixinTimeoutsLastIndex: null,
 	_deferMixinTimeouts: null,
 	_deferMixinIntervalsLastIndex: null,
