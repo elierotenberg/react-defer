@@ -12,10 +12,13 @@ var Deferred = require("react-defer").Deferred;
 
 React.createClass({
 	mixins: [DeferMixin],
-	alwaysDeferThisMethod: DeferMixin.Deferred(function() {
+	alwaysDeferThisMethod: Deferred(function() {
 		this.setState({
 			hello: "world",
 		});
+	}),
+	alwaysRAFThisMethod: DeferredAnimationFrame(function() {
+		somethingThatAlwaysNeedsToBeDoneInNextAF();
 	}),
 	nonDeferredMethod: function() {
 		this.setState({
