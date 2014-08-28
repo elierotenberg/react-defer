@@ -25,16 +25,17 @@ var Mixin = {
 		return function() {
 			var k = this._deferMixinTimeoutsLastIndex++;
 			var args = arguments;
-			var t = this._deferMixinAFTimeouts[k] = raf(function() {
+			var t = raf(function() {
 				delete _this._deferMixinAFTimeouts[k];
 				fn.apply(_this, args);
 			});
-			return {
+			var r = this._deferMixinAFTimeouts = {
 				clear: function clear() {
 					t.cancel();
 					delete _this._deferMixinAFTimeouts[k];
-				},
+				},				
 			};
+			return r;
 		};
 	},
 	intervalAnimationFrame: function intervalAnimationFrame(fn) {
@@ -42,33 +43,35 @@ var Mixin = {
 		return function() {
 			var k = this._deferMixinAFIntervalsLastIndex++;
 			var args = arguments;
-			var i = this._deferMixinAFIntervals[k] = raf(function z() {
-				i = this._deferMixinAFIntervals[k] = raf(z);
+			var i = raf(function z() {
+				i = raf(z);
 				fn.apply(_this, args);
 			});
-			return {
+			var r = this._deferMixinAFIntervals[k] = {
 				clear: function clear() {
 					i.cancel();
 					delete _this._deferMixinIntervals[k];
 				}
-			}
-		}
+			};
+			return r;
+		};
 	},
 	timeout: function timeout(fn, delay) {
 		var _this = this;
 		return function() {
 			var k = this._deferMixinTimeoutsLastIndex++;
 			var args = arguments;
-			var t = this._deferMixinTimeouts[k] = setTimeout(function() {
+			var t = setTimeout(function() {
 				delete _this._deferMixinTimeouts[k];
 				fn.apply(_this, args);
 			}, delay);
-			return {
+			var r = this._deferMixinTimeouts[k] = {
 				clear: function clear() {
 					clearTimeout(t);
 					delete _this._deferMixinTimeouts[k];
-				}
+				},				
 			};
+			return r;
 		};
 	},
 	defer: function defer(fn) {
@@ -79,20 +82,21 @@ var Mixin = {
 		return function() {
 			var k = this._deferMixinIntervalsLastIndex++;
 			var args = arguments;
-			var i = this._deferMixinIntervals[k] = setInterval(function() {
+			var i = setInterval(function() {
 				fn.apply(_this, args);
 			}, period);
-			return {
+			var r = this._deferMixinIntervals[k] = {
 				clear: function clear() {
 					clearInterval(i);
 					delete _this._deferMixinIntervals[k];
 				},
 			};
+			return r;
 		};
 	},
 	componentWillUnmount: function componentWillUnmount() {
-		_.each(this._deferMixinTimeouts, function(t) { t.clear(); });
-		_.each(this._deferMixinIntervals, function(i) { i.clear(); });
+		_.each(this._deferMixinTimeouts, function(r) { r.clear(); });
+		_.each(this._deferMixinIntervals, function(r) { r.clear(); });
 	},
 };
 

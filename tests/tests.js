@@ -1,10 +1,11 @@
 /** @jsx React.DOM */
-var DeferMixin = require("..");
+var DeferMixin = require("..").Mixin;
+var Deferred = require("..").Deferred;
 var React = require("react");
 
 var Component = React.createClass({displayName: 'Component',
 	mixins: [DeferMixin],
-	deferHello: DeferMixin.Deferred(function() {
+	deferHello: Deferred(function() {
 		console.warn("hello");
 	}),
 	render: function render() {
