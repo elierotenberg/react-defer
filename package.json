@@ -1,6 +1,6 @@
 {
   "name": "react-defer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React Mixin to safely defer methods across a components lifecycle.",
   "main": "index.js",
   "scripts": {
